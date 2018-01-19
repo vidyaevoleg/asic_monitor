@@ -15,6 +15,7 @@ module Api
     def destroy
       machine = Machine.find(params[:id])
       machine.destroy!
+      render json: {ok: :ok}
     end
 
     def update_template
