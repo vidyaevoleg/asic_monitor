@@ -4,6 +4,7 @@ module Machines
     string :model
     string :serial, default: nil
     string :place
+    string :ip
 
     validate do
       unless Machine.models.keys.include?(model)

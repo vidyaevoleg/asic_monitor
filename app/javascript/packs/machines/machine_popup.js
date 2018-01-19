@@ -95,7 +95,7 @@ class MachinePopup extends Component {
             </div>
             <div className="col-sm-6">
               <label>IP</label>
-              <input placeholder="тут будет внутренний айпи" name="ip" className="form-control" value={machine.ip} />
+              <input placeholder="тут будет внутренний айпи" name="ip" className="form-control" value={machine.ip} onChange={this.changeFieldHandler} />
             </div>
           </div>
           <br/>

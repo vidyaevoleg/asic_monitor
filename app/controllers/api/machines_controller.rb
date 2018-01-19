@@ -27,7 +27,7 @@ module Api
     private
 
     def machine_params
-      params.require(:machine).permit(:model, :serial, :place)
+      params.require(:machine).permit(:model, :serial, :place, :ip)
     end
 
     def template_params
