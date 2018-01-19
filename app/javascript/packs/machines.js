@@ -153,6 +153,9 @@ class Machines extends Component {
                 IP
               </th>
               <th className="label">
+                PLACE
+              </th>
+              <th className="label">
                 MODEL
               </th>
               <th className="label">

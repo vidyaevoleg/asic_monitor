@@ -30,6 +30,9 @@ class MachineListItem extends Component {
           </a>
         </td>
         <td>
+          {machine.place}
+        </td>
+        <td>
           {machine.model}
         </td>
         <th>
