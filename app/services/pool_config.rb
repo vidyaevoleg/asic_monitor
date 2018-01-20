@@ -15,13 +15,13 @@ class PoolConfig
 
   def miners
     if id == 'ltc1'
-      ['L3+']
+      ['L3']
     elsif id == 'btc2x1'
       ['D3']
     elsif id == 'dgb_sha256'
       ['M3', 'S9']
     elsif id == 'dgb_scrypt'
-      ['L3+']
+      ['L3']
     else
       []
     end
