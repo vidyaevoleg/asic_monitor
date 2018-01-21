@@ -12,7 +12,7 @@ class PoolConfig::B2x
       password3: '',
       fan: false,
       fan_value: '',
-      freq: 400
+      freq: 0
     }
   end
 end
