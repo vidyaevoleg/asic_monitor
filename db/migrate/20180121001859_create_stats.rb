@@ -3,7 +3,7 @@ class CreateStats < ActiveRecord::Migration[5.1]
     create_table :stats do |t|
       t.integer :blocks
       t.decimal :hashrate
-      t.boolean :valid
+      t.boolean :success
       t.boolean :active, default: false
       t.text :temparatures
       t.references :machine, index: true

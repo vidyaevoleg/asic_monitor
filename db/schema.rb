@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20180121001859) do
   create_table "stats", force: :cascade do |t|
     t.integer "blocks"
     t.decimal "hashrate"
-    t.boolean "valid"
+    t.boolean "success"
     t.boolean "active", default: false
     t.text "temparatures"
     t.bigint "machine_id"

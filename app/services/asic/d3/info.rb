@@ -23,7 +23,7 @@ class Asic::D3::Info
       {
         blocks: html.css('#ant_foundblocks').children.first.to_s,
         hashrate: html.css('#ant_ghsav').children.first.to_s,
-        valid: get_valid(html),
+        success: check_success(html),
         temparatures: get_temp(html)
       }
     end
@@ -34,7 +34,7 @@ class Asic::D3::Info
       end
     end
 
-    def get_valid(html)
+    def check_success(html)
       has_x = html.css('#cbi-table-1-status').map do |d|
         d.children.first.to_s
       end.join('').include?('x')
