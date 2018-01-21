@@ -18,6 +18,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'unicorn'
 gem 'haml-rails', "~> 1.0"
 gem 'gon'
+gem 'sidekiq'
 gem "font-awesome-rails"
 gem 'active_model_serializers'
 gem 'carrierwave', '~> 1.0'
@@ -30,6 +31,12 @@ gem 'draper'
 gem 'rest-client'
 gem 'jquery-rails'
 gem 'rails-i18n'
+gem 'redis'
+gem 'redis-namespace'
+gem 'redis-rails'
+gem 'redis-rack-cache'
+gem 'foreman'
+gem 'whenever', require: false
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

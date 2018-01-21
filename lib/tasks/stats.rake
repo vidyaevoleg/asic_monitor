@@ -1,7 +1,7 @@
 namespace :stats do
   task fetch: [:environment] do
     Machine.find_each do |machine|
-      machine.save_stat
+      StatJob.perform_later(machine.id)
     end
   end
 end

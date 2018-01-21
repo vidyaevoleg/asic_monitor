@@ -1,3 +1,5 @@
+require_relative 'asic'
+
 class Asic
   attr_reader :machine
 
@@ -9,16 +11,8 @@ class Asic
     Machines::UpdateAsic.run(machine: machine)
   end
 
-  def status
-
-  end
-
   def info
-    @info ||= machine.remote.class.const_get('Info').get(info_url)
+    info_object = machine.remote.class.const_get('Info').new(machine)
+    @info ||= info_object.info
   end
-
-  def info_url
-    '/'
-  end
-
 end

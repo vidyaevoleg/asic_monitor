@@ -1,10 +1,5 @@
 require 'open-uri'
 require 'nokogiri'
-class Asic::M3::Info
+class Asic::M3::Info < Asic::Info
 
-  class << self
-    def get(url)
-      nil
-    end
-  end
 end

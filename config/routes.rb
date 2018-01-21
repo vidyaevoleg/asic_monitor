@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   root 'pages#main'
   resources :machines, only: :index
@@ -6,4 +8,5 @@ Rails.application.routes.draw do
       put :update_template, on: :member
     end
   end
+  mount Sidekiq::Web => '/sidekiq'
 end
