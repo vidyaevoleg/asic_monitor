@@ -5,7 +5,7 @@ namespace :stats do
     Rails.logger     = logger
 
     Machine.find_each do |machine|
-      machine.save_stat
+      StatJob.perform_later(machine.id)
     end
   end
 end
