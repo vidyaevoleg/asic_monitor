@@ -8,8 +8,8 @@ class Asic::D3::Info < Asic::Info
       puts "make request on #{machine.ip}"
       body = RestClient.get(info_url, headers).body
       html = Nokogiri::HTML(body)
-      parse_html(html)
       puts "html parsed request on #{machine.ip}"
+      parse_html(html)
     rescue Exception => e
       puts "fail request on #{machine.ip}"
       puts "error #{e}"
