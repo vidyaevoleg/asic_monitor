@@ -38,13 +38,16 @@ class Stats extends Component {
                 MODEL
               </th>
               <th className="label">
-                TEMPERATURES
+                temparatures
               </th>
               <th className="label">
                 HASHRATE
               </th>
               <th className="label">
                 BLOCKS
+              </th>
+              <th className="label">
+                TIME
               </th>
             </thead>
             <tbody>
@@ -53,9 +56,9 @@ class Stats extends Component {
                   let color;
                   if (stat.active && stat.success) {
                     color = 'table-success'
-                  } else if (stat.success && !stat.active) {
+                  } else if (stat.active && !stat.success) {
                     color = 'table-warning'
-                  } else if (!stat.success) {
+                  } else if (!stat.active) {
                     color = 'table-danger'
                   }
                   return (
@@ -65,26 +68,26 @@ class Stats extends Component {
                           {stat.ip}
                         </a>
                       </td>
-                      <td>
-                        {stat.place}
-                      </td>
-                      <td>
-                        {stat.model}
-                      </td>
                       <th>
-                        <code>
-                          {stat.temperatures}
-                        </code>
+                        {stat.place}
                       </th>
+                      <th>
+                        {stat.model}
+                      </th>
+                      <td>
+                        <code>
+                          {stat.temparatures}
+                        </code>
+                      </td>
                       <th>
                         {stat.hashrate}
                       </th>
                       <th>
                         {stat.blocks}
                       </th>
-                      <th>
-
-                      </th>
+                      <td className="text-info">
+                        {stat.time}
+                      </td>
                     </tr>
                   )
                 })

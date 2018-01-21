@@ -1,5 +1,5 @@
 class StatSerializer < ApplicationSerializer
-  attributes :temparatures, :id, :hashrate, :success, :active, :blocks, :place, :url, :ip, :model
+  attributes :temparatures, :id, :hashrate, :success, :active, :blocks, :place, :url, :ip, :model, :time
 
   def ip
     machine.ip
@@ -21,7 +21,7 @@ class StatSerializer < ApplicationSerializer
     @machine ||= object.machine
   end
 
-  def temperatures
-    super.join(', ')
+  def time
+    object.created_at.strftime("%H:%M %d-%m-%Y")
   end
 end
