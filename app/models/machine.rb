@@ -15,10 +15,6 @@ class Machine < ApplicationRecord
   end
 
   def save_stat
-    if remote.info
-      stats.create(remote.info)
-    else
-      stats.create(Stat::INVALID)
-    end
+    Machines::SaveStat.run(machine: self)
   end
 end

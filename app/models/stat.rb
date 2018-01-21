@@ -1,5 +1,6 @@
 class Stat < ApplicationRecord
   serialize :temperatures, Array
+  belongs_to :machine
   INVALID = {
     success: false,
     active: false,

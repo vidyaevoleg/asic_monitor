@@ -7,6 +7,7 @@ module Machines
       return self if machine.model == 'M3'
       begin
         RestClient.post(asic_url, params, headers)
+        machine.reload.save_stat
       rescue
         errors.add(:machine, "#{machine.ip} didn't respond")
       end

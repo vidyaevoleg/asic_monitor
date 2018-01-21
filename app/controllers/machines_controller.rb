@@ -6,4 +6,11 @@ class MachinesController < ApplicationController
     gon.models = Machine.models.keys
     gon.configs = PoolConfig.all
   end
+
+
+  def reboot
+    machine = Machine.find(params[:id])
+    Machines::UpdateAsic.run(machine: machine)
+    redirect_to :back
+  end
 end
