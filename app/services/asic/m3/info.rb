@@ -1,5 +1,17 @@
 require 'open-uri'
 require 'nokogiri'
-class Asic::M3::Info < Asic::Info
+class Asic::M3::Info
+  attr_reader :machine
 
+  def initialize(machine)
+    @machine = machine
+  end
+
+  def info
+    nil
+  end
+
+  def info_url
+    "#{machine.url}/"
+  end
 end
