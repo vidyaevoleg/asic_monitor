@@ -24,7 +24,8 @@ class Asic::D3::Info
         blocks: html.css('#ant_foundblocks').children.first.to_s,
         hashrate: html.css('#ant_ghsav').children.first.to_s,
         success: check_success(html),
-        temparatures: get_temp(html)
+        temparatures: get_temp(html),
+        active: true
       }
     end
 
