@@ -12,6 +12,7 @@ module Machines
     string :password3, default: nil
     boolean :fan, default: false
     string :fan_value, default: nil
+    integer :freq, default: 400
 
     def execute
       template.update(inputs.except(:machine))

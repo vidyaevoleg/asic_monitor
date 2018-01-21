@@ -28,7 +28,8 @@ module Machines
         _ant_pool3user: template.worker3,
         _ant_pool3pw: template.password3,
         _ant_fan_customize_switch: template.fan,
-        _ant_fan_customize_value: template.fan_value
+        _ant_fan_customize_value: template.fan_value,
+        _ant_freq: template.freq
       }
     end
 

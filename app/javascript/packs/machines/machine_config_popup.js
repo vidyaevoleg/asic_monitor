@@ -189,6 +189,12 @@ class MachineConfigPopup extends Component {
                 </div>
               </div>
             }
+            <div className="col-4">
+             <div className="form-group">
+               <label>Freq </label>
+               <input className="form-control" name="freq" onChange={ this.onChangeFieldHandler} value={template.freq}/>
+             </div>
+           </div>
           </div>
         </ModalBody>
         <ModalFooter>

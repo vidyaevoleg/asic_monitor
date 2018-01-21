@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180121122739) do
+ActiveRecord::Schema.define(version: 20180121134436) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20180121122739) do
     t.boolean "fan", default: false
     t.integer "fan_value", default: 100
     t.bigint "machine_id"
+    t.integer "freq", default: 400
     t.index ["machine_id"], name: "index_templates_on_machine_id"
   end
 

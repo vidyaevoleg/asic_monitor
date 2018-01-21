@@ -11,7 +11,8 @@ class PoolConfig::Ltc
       password2: '18',
       password3: '',
       fan: true,
-      fan_value: '80'
+      fan_value: '80',
+      freq: 400
     }
   end
 end

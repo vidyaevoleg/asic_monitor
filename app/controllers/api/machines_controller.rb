@@ -42,7 +42,8 @@ module Api
         :password2,
         :password3,
         :fan,
-        :fan_value
+        :fan_value,
+        :freq
       )
     end
 

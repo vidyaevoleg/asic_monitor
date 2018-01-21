@@ -11,7 +11,8 @@ class PoolConfig::Dgb_sha256
       password2: '',
       password3: '',
       fan: false,
-      fan_value: ''
+      fan_value: '',
+      freq: 400
     }
   end
 end
