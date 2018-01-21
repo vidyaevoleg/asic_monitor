@@ -14,7 +14,11 @@ class Asic
   end
 
   def info
-    @info ||= machine.remote.info
+    @info ||= machine.remote.class.const_get('Info').get(info_url)
+  end
+
+  def info_url
+    '/'
   end
 
 end
