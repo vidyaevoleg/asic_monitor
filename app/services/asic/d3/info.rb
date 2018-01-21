@@ -5,15 +5,20 @@ class Asic::D3::Info < Asic::Info
 
   def info
     begin
+      p "make request on #{machine.ip}"
       body = RestClient.get(info_url, headers).body
       html = Nokogiri::HTML(body)
       parse_html(html)
-    rescue
+      p "html parsed request on #{machine.ip}"
+    rescue Exception => e
+      p "fail request on #{machine.ip}"
+      p "error #{e}"
       nil
     end
   end
 
   def info_url
+    p 'get info url'
     "#{machine.url}/cgi-bin/minerStatus.cgi"
   end
 
