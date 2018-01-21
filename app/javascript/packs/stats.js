@@ -8,12 +8,25 @@ class Stats extends Component {
     gon.pools = [];
     this.state = {
       stats: gon.stats,
+      models: gon.models,
+      filter: {}
     }
   }
 
-  render () {
-    const {stats} = this.state;
+  filterStats = () => {
+    const {filter, stats} = this.state;
+    let filtred = stats;
+    for (let key in filter) {
+      if (filter[key] && key == 'model' && filter[key] != 'all') {
+        filtred = filtred.filter(m => m.model == filter[key])
+      }
+    }
+    return filtred;
+  }
 
+  render () {
+    const stats = this.filterStats();
+    const {filter, models} = this.state;
     return (
       <div className="container-fluid">
         <div className="stats-header">
@@ -24,6 +37,21 @@ class Stats extends Component {
               </span>
             </h2>
           </pre>
+        </div>
+        <div className="row">
+        <div className="col-4">
+          <div className="form-group">
+            <select value={filter.model} className="form-control" onChange={(e) => {this.setState({filter: {...this.state.filter, model: e.target.value}})}}>
+              <label>модель</label>
+              <option value={null}>all</option>
+               {models.map(m => {
+                 return (
+                   <option value={m}>{m}</option>
+                 )
+               })}
+            </select>
+          </div>
+        </div>
         </div>
         <div className="stats-list">
           <table className="table table-considered">
