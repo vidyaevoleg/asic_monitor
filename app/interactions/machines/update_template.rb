@@ -16,6 +16,9 @@ module Machines
     def execute
       template.update(inputs.except(:machine))
       errors.merge!(template.errors)
+      if valid?
+        compose(UpdateAsic, machine: machine.reload)
+      end
       self
     end
 

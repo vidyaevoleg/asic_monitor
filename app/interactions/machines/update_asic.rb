@@ -4,10 +4,11 @@ module Machines
     object :machine, class: Machine
 
     def execute
+      return self if machine.model == 'M3'
       begin
         RestClient.post(asic_url, params, headers)
       rescue
-        errors.add(:machine, 'invalid asic answer')
+        errors.add(:machine, "#{machine.ip} didn't respond")
       end
       self
     end
@@ -33,7 +34,6 @@ module Machines
     def headers
       {
         'Authorization' => 'Digest username="root", realm="antMiner Configuration", nonce="99555087629fb07166425ba8fc60c615", uri="/cgi-bin/set_miner_conf.cgi", response="7bcba76120421826a1cef56dcc325a3c", qop=auth, nc=000000fe, cnonce="ed43ab12d34cd46c"',
-        'Content-Length' => params.to_query.size
       }
     end
 
