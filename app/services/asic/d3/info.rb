@@ -31,7 +31,7 @@ class Asic::D3::Info
   def parse_html
     {
       blocks: html.css('#ant_foundblocks').children.first.to_s,
-      hashrate: html.css('#ant_ghsav').children.first.to_s,
+      hashrate: html.css('#ant_ghs5s').children.first.to_s,
       success: check_success,
       temparatures: get_temp,
       active: true
