@@ -10,10 +10,6 @@ class Machine < ApplicationRecord
     "http://#{ip}"
   end
 
-  def remote
-    Asic.const_get(model).new(self)
-  end
-
   def save_stat
     Machines::SaveStat.run(machine: self)
   end

@@ -3,16 +3,24 @@ require_relative 'asic'
 class Asic
   attr_reader :machine
 
+  def self.[](machine)
+    klass = Asic.const_get(machine.model).new(machine)
+  end
+
   def initialize(machine)
     @machine = machine
   end
 
-  def update_config
-    Machines::UpdateAsic.run(machine: machine)
+  def reboot
+
+  end
+
+
+  def update
+    self.class.const_get('Update').call(machine)
   end
 
   def info
-    info_object = machine.remote.class.const_get('Info').new(machine)
-    @info ||= info_object.info
+    @info ||= self.class.const_get('Info').new(machine).info
   end
 end

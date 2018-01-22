@@ -2,8 +2,7 @@ require 'open-uri'
 require 'nokogiri'
 
 class Asic::D3::Info
-
-  attr_reader :machine
+  attr_reader :machine, :html
 
   def initialize(machine)
     @machine = machine
@@ -11,20 +10,15 @@ class Asic::D3::Info
 
   def info
     begin
-      puts "make request on #{machine.ip}"
       body = RestClient.get(info_url, headers).body
-      html = Nokogiri::HTML(body)
-      puts "html parsed request on #{machine.ip}"
-      parse_html(html)
+      @html = Nokogiri::HTML(body)
+      parse_html
     rescue Exception => e
-      puts "fail request on #{machine.ip}"
-      puts "error #{e}"
       nil
     end
   end
 
   def info_url
-    p 'get info url'
     "#{machine.url}/cgi-bin/minerStatus.cgi"
   end
 
@@ -34,23 +28,23 @@ class Asic::D3::Info
     }
   end
 
-  def parse_html(html)
+  def parse_html
     {
       blocks: html.css('#ant_foundblocks').children.first.to_s,
       hashrate: html.css('#ant_ghsav').children.first.to_s,
-      success: check_success(html),
-      temparatures: get_temp(html),
+      success: check_success,
+      temparatures: get_temp,
       active: true
     }
   end
 
-  def get_temp(html)
+  def get_temp
     html.css('#cbi-table-1-temp2').map do |d|
       d.children.first.to_s.split(':').last
     end
   end
 
-  def check_success(html)
+  def check_success
     has_x = html.css('#cbi-table-1-status').map do |d|
       d.children.first.to_s
     end.join('').include?('x')
