@@ -4,7 +4,6 @@ module Machines
     object :machine, class: Machine
 
     def execute
-      return self if machine.model == 'M3'
       remote = Asic[machine]
       begin
         remote.update
