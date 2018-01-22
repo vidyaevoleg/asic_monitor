@@ -155,7 +155,7 @@ class Stats extends Component {
                       </th>
                       <td>
                         <code>
-                          {stat.temparatures}
+                          {stat.temparatures.toLocaleString()}
                         </code>
                       </td>
                       <th>
