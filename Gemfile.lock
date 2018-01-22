@@ -107,6 +107,7 @@ GEM
     foreman (0.64.0)
       dotenv (~> 0.7.0)
       thor (>= 0.13.6)
+    get_process_mem (0.2.1)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     gon (6.2.0)
@@ -169,6 +170,9 @@ GEM
       phony (> 2.15)
     public_suffix (3.0.1)
     puma (3.11.0)
+    puma_worker_killer (0.1.0)
+      get_process_mem (~> 0.2)
+      puma (>= 2.7, < 4)
     rack (2.0.3)
     rack-cache (1.7.1)
       rack (>= 0.4)
@@ -337,6 +341,7 @@ DEPENDENCIES
   pg (~> 0.18)
   phony_rails
   puma (~> 3.7)
+  puma_worker_killer
   rails (~> 5.1.4)
   rails-i18n
   redis
