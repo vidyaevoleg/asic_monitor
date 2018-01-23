@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import MachineListItem from './machines/machine_list_item'
 import MachineConfigPopup from './machines/machine_config_popup'
 import MachinePopup from './machines/machine_popup'
+import RebootingProgress from './machines/rebooting_progress'
 import dums from './common/dums'
 
 class Machines extends Component {
@@ -17,6 +18,7 @@ class Machines extends Component {
         model: null
       },
       selectedMachines: [],
+      rebootedMachines: [],
       selectedTemplate: null,
       selectedMachine: null,
       models: gon.models
@@ -87,7 +89,8 @@ class Machines extends Component {
     this.setState({
       selectedMachines: [],
       selectedMachine: null,
-      selectedTemplate: null
+      selectedTemplate: null,
+      rebootedMachines: []
     })
   }
 
@@ -103,10 +106,27 @@ class Machines extends Component {
     })
   }
 
+  rebootHandler = () => {
+    const {selected} = this.state;
+    if (confirm('Уверен?')) {
+      this.setState({
+        rebootedMachines: selected
+      })
+    }
+  }
+
+  openHandler = () => {
+    const {selected, machines} = this.state;
+    selected.map(id => {
+      let machine = machines.find(s => s.id == id);
+      window.open(machine.url);
+    })
+  }
+
   render () {
-    const {selected, filter, selectedMachines, selectedMachine, selectedTemplate, models} = this.state;
+    const {selected, filter, selectedMachines, selectedMachine, selectedTemplate, rebootedMachines, models} = this.state;
     const machines = this.filterMachines();
-    console.log(filter)
+
     return (
       <div className="container-fluid">
         <div className="machines-header">
@@ -122,7 +142,7 @@ class Machines extends Component {
           </pre>
         </div>
         <div className="row">
-          <div className="col-4">
+          <div className="col-2">
             <div className="form-group">
               <select value={filter.model} className="form-control" onChange={(e) => {this.setState({filter: {...this.state.filter, model: e.target.value}})}}>
                 <label>модель</label>
@@ -137,13 +157,23 @@ class Machines extends Component {
           </div>
           {selected && selected.length > 0 && <div className="col-2">
             <button className="btn btn-dark" onClick={this.editGroupHandler}>
-              редактировать {selected.length} тачек
+              редактировать ({selected.length})
+            </button>
+          </div>}
+          {selected && selected.length > 0 && <div className="col-2">
+            <button className="btn btn-info" onClick={this.openHandler}>
+              открыть ({selected.length})
+            </button>
+          </div>}
+          {selected && selected.length > 0 && <div className="col-2">
+            <button className="btn btn-danger" onClick={this.rebootHandler}>
+              ребут ({selected.length})
             </button>
           </div>}
         </div>
         <div className="machines-list">
           <table className="table table-considered">
-            <thead>
+            <thead className="table-info">
               <th width="5%">
                 <div className="form-group checkbox-big">
                   <input type="checkbox" className="form-control" checked={selected.length == machines.length} onChange={this.chooseAll}/>
@@ -159,7 +189,16 @@ class Machines extends Component {
                 MODEL
               </th>
               <th className="label">
-                POOLS
+                MAIN POOL
+              </th>
+              <th className="label">
+                TEMPERATURE
+              </th>
+              <th className="label">
+                HASHRATE
+              </th>
+              <th className="label">
+                LAST SYNC
               </th>
               <th>
               </th>
@@ -192,6 +231,10 @@ class Machines extends Component {
           }
           {selectedMachines && selectedMachines.length > 0 &&
             <MachineConfigPopup toogle={this.tooglePopup} machines={selectedMachines} />
+          }
+          {
+            rebootedMachines && rebootedMachines.length > 0 &&
+            <RebootingProgress toogle={this.tooglePopup} ids={rebootedMachines}/>
           }
         </div>
       </div>

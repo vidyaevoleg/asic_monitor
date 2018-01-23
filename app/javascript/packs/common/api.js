@@ -33,6 +33,14 @@ const API = {
         url: '/api/machines/' + id,
         success: success
       })
+    },
+    reboot (id, success, error) {
+      return Rails.ajax({
+        type: 'PUT',
+        url: '/api/machines/' + id + '/reboot',
+        success: success,
+        error: error
+      })
     }
   }
 }

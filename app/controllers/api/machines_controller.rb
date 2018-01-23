@@ -24,6 +24,12 @@ module Api
       respond_with result, serializer: MachineSerializer, location: nil
     end
 
+    def reboot
+      machine = Machine.find(params[:id])
+      result = Machines::Reboot.run(machine: machine)
+      respond_with result, serializer: MachineSerializer, location: nil
+    end
+
     private
 
     def machine_params

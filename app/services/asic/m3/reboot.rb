@@ -11,7 +11,12 @@ class Asic::M3::Reboot
   end
 
   def call
-    Kernel.system(command)
+    output = Kernel.system(command)
+    if output == true
+      true
+    else
+      raise "Machine #{machine.ip} didn't respond"
+    end
   end
 
   def command

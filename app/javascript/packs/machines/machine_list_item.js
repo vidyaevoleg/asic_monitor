@@ -16,9 +16,16 @@ class MachineListItem extends Component {
 
   render () {
     const {machine, onChoose, chosen, editMachine, editConfig} = this.props;
-
+    let color;
+    if (machine.active && machine.success) {
+      color = 'table-success'
+    } else if (machine.active && !machine.success) {
+      color = 'table-warning'
+    } else if (!machine.active) {
+      color = 'table-danger'
+    }
     return (
-      <tr>
+      <tr className={color}>
         <td>
           <div className="form-group checkbox-lil">
             <input type="checkbox" className="form-control" checked={chosen} onChange={onChoose}/>
@@ -32,14 +39,27 @@ class MachineListItem extends Component {
         <td>
           {machine.place}
         </td>
-        <td>
+        <th>
           {machine.model}
+        </th>
+        <td>
+          <code>
+            {machine.template.url1}
+          </code>
         </td>
         <th>
           <code>
-            {[machine.template.url1, machine.template.url2, machine.template.url3].join(', ')}
+            {machine.temparatures && machine.temparatures.toLocaleString()}
           </code>
         </th>
+        <th>
+          <code>
+            {machine.hashrate}
+          </code>
+        </th>
+        <td>
+          {machine.time}
+        </td>
         <th>
           <i className="fa fa-pencil fa-lg" onClick={editMachine}></i>
         </th>

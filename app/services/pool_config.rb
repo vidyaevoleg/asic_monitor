@@ -4,7 +4,12 @@ class PoolConfig
   def self.all
     url = 'http://nextblock.ru/api/pools'
     pools = JSON.parse(RestClient.get(url).body) rescue []
-    pools.map {|pool| new(pool).as_json}
+    pool_configs = pools.map {|pool| new(pool).as_json}
+    pool_configs.push(custom).flatten
+  end
+
+  def self.custom
+    [PoolConfig::Bth.as_json]
   end
 
   def initialize(options={})

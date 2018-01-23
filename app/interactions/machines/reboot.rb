@@ -1,16 +1,14 @@
 module Machines
-  class UpdateAsic < ::ApplicationInteraction
-
-    object :machine, class: Machine
+  class Reboot < ::ApplicationInteraction
+    object :machine
 
     def to_model
       machine.reload
     end
 
     def execute
-      remote = Asic[machine]
       begin
-        remote.update
+        output = Asic[machine].reboot
       rescue
         errors.add(:machine, "#{machine.ip} didn't respond")
       end

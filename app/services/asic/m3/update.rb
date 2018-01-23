@@ -13,6 +13,7 @@ class Asic::M3::Update
 
   def call
     Kernel.system(command)
+    Asic[machine].reboot
   end
 
   def command
