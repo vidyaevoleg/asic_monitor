@@ -35,7 +35,7 @@ class MachineSerializer < ApplicationSerializer
   end
 
   def time
-    object.created_at.strftime("%H:%M %d:%m")
+    stat&.created_at&.strftime("%H:%M %d:%m")
   end
 
 end
