@@ -12,9 +12,8 @@ class Asic
   end
 
   def reboot
-
+    self.class.const_get('Reboot').call(machine)
   end
-
 
   def update
     self.class.const_get('Update').call(machine)
