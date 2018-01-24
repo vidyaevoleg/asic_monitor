@@ -206,6 +206,8 @@ class Machines extends Component {
               </th>
               <th>
               </th>
+              <th>
+              </th>
             </thead>
             <tbody>
               {

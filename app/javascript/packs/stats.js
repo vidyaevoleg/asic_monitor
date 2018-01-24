@@ -28,7 +28,7 @@ class Stats extends Component {
       for (let j in stats) {
         let stat = stats[j];
         temps[i].push({
-          x: stat.time, y: stat.temps[i] || 0
+          x: stat.time, y: parseInt(stat.temps[i]) || 0
         })
       }
     }
@@ -42,7 +42,7 @@ class Stats extends Component {
 
   render () {
     const {hashrateStats, temps} = this.state;
-
+    console.log(temps)
     return (
       <div className="container-fluid">
         <br/>
@@ -55,7 +55,7 @@ class Stats extends Component {
           </pre>
         </div>
         <div className="stats-list">
-          <VictoryChart scale={{ x: "time" }} height={200} width={800} theme={VictoryTheme.material}
+          <VictoryChart scale={{ x: "time" }} height={300} width={800} theme={VictoryTheme.material}
             animate={{ duration: 500 }}>
             <VictoryAxis
               style={{
@@ -80,7 +80,7 @@ class Stats extends Component {
           </VictoryChart>
         </div>
         <div className="stats-list">
-          <VictoryChart scale={{ x: "time" }} height={200} width={800} theme={VictoryTheme.material}
+          <VictoryChart scale={{ x: "time" }} height={300} width={800} theme={VictoryTheme.material}
             animate={{ duration: 500 }}>
             <VictoryAxis
               style={{

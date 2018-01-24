@@ -67,6 +67,11 @@ class MachineListItem extends Component {
           <i className="fa fa-cog fa-lg" aria-hidden="true" onClick={editConfig}></i>
         </th>
         <th>
+          <a href={'/machines/' + machine.id}>
+            <i className="fa fa-area-chart fa-lg" aria-hidden="true"></i>
+          </a>
+        </th>
+        <th>
           <i className="fa fa-times text-danger fa-lg" aria-hidden="true" onClick={this.deleteMachine}></i>
         </th>
       </tr>
