@@ -8,4 +8,7 @@ namespace :stats do
       StatJob.perform_later(machine.id)
     end
   end
+  task clear: [:environment] do
+    Stat.where("created_at < ?", 3.days.ago).destroy_all
+  end
 end

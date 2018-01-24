@@ -8,7 +8,8 @@ class MachineSerializer < ApplicationSerializer
     :hashrate,
     :temparatures,
     :success,
-    :active
+    :active,
+    :time
 
   has_one :template, serializer: TemplateSerializer do
     object.template
@@ -35,6 +36,7 @@ class MachineSerializer < ApplicationSerializer
   end
 
   def time
+
     stat&.created_at&.strftime("%H:%M %d:%m")
   end
 

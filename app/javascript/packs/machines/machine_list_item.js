@@ -53,9 +53,7 @@ class MachineListItem extends Component {
           </code>
         </th>
         <th>
-          <code>
-            {machine.hashrate}
-          </code>
+          {machine.hashrate}
         </th>
         <td>
           {machine.time}
