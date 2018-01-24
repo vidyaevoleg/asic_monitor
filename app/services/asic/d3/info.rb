@@ -48,6 +48,6 @@ class Asic::D3::Info
     words = html.css('#cbi-table-1-status').map do |d|
       d.children.first.to_s
     end.join('')
-    words.count('x').to_f / words.count('o').to_f < 0.1
+    (words.count('x').to_f / (words.count('o').to_f + words.count('x').to_f))  < 0.1
   end
 end
