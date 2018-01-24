@@ -34,6 +34,9 @@ class Stats extends Component {
 
   render () {
     const {hashrateStats} = this.state;
+
+    console.log(hashrateStats);
+
     return (
       <div className="container-fluid">
         <br/>

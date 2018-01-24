@@ -12,7 +12,6 @@
 //
 //= require rails-ujs
 //= require jquery
-//= require_tree .
 
 
 window.objectToFormData = function (object, form, namespace) {
