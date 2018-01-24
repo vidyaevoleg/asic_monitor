@@ -37,7 +37,9 @@ class MachineListItem extends Component {
           </a>
         </td>
         <td>
-          {machine.place}
+          <a href={'/machines/' + machine.id}>
+            {machine.place}
+          </a>
         </td>
         <th>
           {machine.model}

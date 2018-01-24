@@ -2,7 +2,7 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
   root 'machines#index'
-  resources :machines, only: :index
+  resources :machines, only: [:index, :show]
   resources :stats, only: :index
   namespace :api do
     resources :machines do

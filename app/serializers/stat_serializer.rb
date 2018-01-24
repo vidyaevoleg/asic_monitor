@@ -22,6 +22,6 @@ class StatSerializer < ApplicationSerializer
   end
 
   def time
-    object.created_at.strftime("%H:%M %d-%m-%Y")
+    object.created_at
   end
 end

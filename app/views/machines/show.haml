@@ -1,0 +1,21 @@
+.app-machine.container
+  .app-machine-header
+    %table.table.table-bordered
+      %thead
+        %tr
+          %th #
+          %th ip
+          %th place
+          %th model
+          %th pool
+      %tbody
+        %tr
+          %td= @machine.id
+          %td
+            %a{href: @machine.url}
+              = @machine.ip
+          %td= @machine.place
+          %td= @machine.model
+          %td= @machine.template&.url1
+  .app-machine-stats#react_machine_stats
+  = javascript_pack_tag('stats')
