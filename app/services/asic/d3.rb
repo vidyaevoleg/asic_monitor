@@ -1,7 +1,7 @@
 class Asic::D3 < Asic
 
-  def info_url
-    "#{machine.url}/cgi-bin/minerStatus.cgi"
+  def chips
+    3
   end
 
 end

@@ -2,40 +2,46 @@ import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
 import {
   VictoryLine,
-  VictoryArea,
   VictoryAxis,
-  VictoryBar,
   VictoryChart,
-  VictoryZoomContainer,
-  VictoryBrushContainer,
   VictoryTheme,
-  Bar
+  VictoryLabel
 } from 'victory';
 
 class Stats extends Component {
 
   constructor (props) {
     super(props);
-    const stats = gon.stats;
-    const newStats = stats.map(s => {
+    const stats = gon.stats.map(s => {
       return {
         ...s,
         time: new Date(s.time)
       }
-    })
+    });
+    const hashrateStats = stats.map(s => {
+      return {x: s.time, y: parseInt(s.hashrate)}
+    });
+    const temps = [];
+    const chips = gon.chips;
+    for (let i=0; i < chips; i++) {
+      temps[i] = temps[i] || [];
+      for (let j in stats) {
+        let stat = stats[j];
+        temps[i].push({
+          x: stat.time, y: stat.temps[i] || 0
+        })
+      }
+    }
     this.state = {
-      hashrateStats: newStats.map(s => {
-        return {x: s.time, y: parseInt(s.hashrate)}
-      })
+      hashrateStats: hashrateStats,
+      temps: temps
     }
   }
 
 
 
   render () {
-    const {hashrateStats} = this.state;
-
-    console.log(hashrateStats);
+    const {hashrateStats, temps} = this.state;
 
     return (
       <div className="container-fluid">
@@ -73,7 +79,38 @@ class Stats extends Component {
             />
           </VictoryChart>
         </div>
+        <div className="stats-list">
+          <VictoryChart scale={{ x: "time" }} height={200} width={800} theme={VictoryTheme.material}
+            animate={{ duration: 500 }}>
+            <VictoryAxis
+              style={{
+                tickLabels: { fontSize: 10, fontWeight: 'bold' },
+              }}
+            />
+
+            <VictoryAxis
+              style={{
+                tickLabels: { fontSize: 8, fontWeight: 'bold' },
+                grid: { stroke: '#B3E5FC', strokeWidth: 0.25 }
+              }}
+              dependentAxis
+              tickFormat={(x) => {
+                return x + ' ℃'
+              }}
+            />
+            {temps.map( (temp, index) => {
+              let color = ['blue', 'deepskyblue', 'violet', 'navy'][index]
+              return (
+                <VictoryLine
+                  style={{data: { stroke: color, border: '2px solid gray'}}}
+                  data={temp}
+                />
+              )
+            })}
+          </VictoryChart>
+        </div>
       </div>
+
     )
   }
 }
