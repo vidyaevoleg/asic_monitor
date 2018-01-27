@@ -198,6 +198,9 @@ class Machines extends Component {
                 HASHRATE
               </th>
               <th className="label">
+                BLOCKS
+              </th>
+              <th className="label">
                 LAST SYNC
               </th>
               <th>

@@ -9,7 +9,8 @@ class MachineSerializer < ApplicationSerializer
     :temparatures,
     :success,
     :active,
-    :time
+    :time,
+    :blocks_count
 
   has_one :template, serializer: TemplateSerializer do
     object.template
