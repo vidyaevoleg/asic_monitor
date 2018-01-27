@@ -23,7 +23,7 @@ class PoolConfig
       ['L3']
     elsif id == 'btc2x1'
       ['D3']
-    elsif id == 'dgb_sha256'
+    elsif id == 'dgb-sha256-1'
       ['M3', 'S9']
     elsif id == 'dgb_scrypt'
       ['L3']
@@ -37,7 +37,7 @@ class PoolConfig
       'Litecoin'
     elsif id == 'btc2x1'
       'Segwit2x'
-    elsif id == 'dgb_sha256'
+    elsif id == 'dgb-sha256-1'
       'DGB sha256'
     elsif id == 'dgb_scrypt'
       'DGB scrypt'
@@ -51,7 +51,7 @@ class PoolConfig
       PoolConfig::Ltc.config
     elsif id == 'btc2x1'
       PoolConfig::B2x.config
-    elsif id == 'dgb_sha256'
+    elsif id == 'dgb-sha256-1'
       PoolConfig::Dgb_sha256.config
     elsif id == 'dgb_scrypt'
       PoolConfig::Dgb_scrypt.config
