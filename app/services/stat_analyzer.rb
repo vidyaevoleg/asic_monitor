@@ -45,13 +45,13 @@ class StatAnalyzer
 
   def unsuccessfull?
     return false if previous.size < 5
-    unsuc_via_period = previous.first.success && !(previous - previous.first).last(4).map(&:success).include?(true)
+    unsuc_via_period = previous.first.success && !previous.last(4).map(&:success).include?(true)
     unsuc_via_period && !stat.success
   end
 
   def shut_down?
     return false if previous.size < 5
-    shut_down_via_period = previous.first.active && !(previous - previous.first).last(4).map(&:active).include?(true)
+    shut_down_via_period = previous.first.active && !previous.last(4).map(&:active).include?(true)
     shut_down_via_period && !stat.active
   end
 end
