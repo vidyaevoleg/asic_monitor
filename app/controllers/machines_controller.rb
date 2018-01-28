@@ -1,6 +1,6 @@
 class MachinesController < ApplicationController
   def index
-    db_machines = Machine.eager_load(:stat, :template).order(id: :desc).all
+    db_machines = Machine.eager_load(:stats, :template).order(id: :desc).all
     machines = json_collection.new(db_machines, each_serializer: ::MachineSerializer)
     gon.machines = machines
     gon.models = Machine.models.keys

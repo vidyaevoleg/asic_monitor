@@ -1,6 +1,5 @@
 class Machine < ApplicationRecord
   has_one :template, dependent: :destroy
-  has_one :stat, -> {order(id: :desc).limit(1)}, class_name: Stat
   has_many :stats, dependent: :destroy
   validates :ip, :place, uniqueness: true
   validates :place, :model, presence: true
