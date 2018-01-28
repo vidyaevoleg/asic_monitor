@@ -9,12 +9,24 @@ class Asic::M3::Info
 
   def info
     begin
-      body = RestClient.get(info_url).body
-      @html = Nokogiri::HTML(body)
+      set_html
       parse_html
     rescue Exception => e
       nil
     end
+  end
+
+  def set_html(count=0)
+    if count < 6
+      puts count
+      body = RestClient.get(info_url).body
+      @html = Nokogiri::HTML(body)
+      if get_hashrate.to_i == 0
+        sleep 10
+        return set_html(count+1)
+      end
+    end
+    html
   end
 
   def info_url

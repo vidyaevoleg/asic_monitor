@@ -4,4 +4,8 @@ class Asic::D3 < Asic
     3
   end
 
+  def hashrate
+    19
+  end
+
 end

@@ -15,6 +15,14 @@ class Asic
     self.class.const_get('Reboot').call(machine)
   end
 
+  def delta
+    0.4
+  end
+
+  def max_temp
+    100
+  end
+
   def update
     self.class.const_get('Update').call(machine)
   end
