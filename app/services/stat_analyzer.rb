@@ -22,8 +22,8 @@ class StatAnalyzer
         Notifier.hashrate_down(machine, need_reboot)
       end
       if temp_up?
-        Notifier.temp_up(machine, need_reboot)
         need_reboot = true
+        Notifier.temp_up(machine, need_reboot)
       end
       if shut_down?
         Notifier.shut_down(machine)
