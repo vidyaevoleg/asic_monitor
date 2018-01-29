@@ -6,17 +6,17 @@ class Notifier
       write("machine #{machine.model} on place #{machine.place} shuw down")
     end
 
-    def temp_up(machine)
-      write("machine #{machine.model} on place #{machine.place} temp over #{Asic[machine].max_temp}")
+    def temp_up(machine, rebooted = false)
+      write("machine #{machine.model} on place #{machine.place} temp over #{Asic[machine].max_temp} #{', machine rebooted' if rebooted}")
     end
 
-    def hashrate_down(machine)
-      write("machine #{machine.model} on place #{machine.place} hashrate lower then  #{machine.stats.last.hashrate}")
+    def hashrate_down(machine, rebooted = false)
+      write("machine #{machine.model} on place #{machine.place} hashrate lower then  #{machine.stats.last.hashrate} #{', machine rebooted' if rebooted}")
     end
 
     def write(message)
       token = '513352298:AAET6A2tCe-dc5eVXRizuo80o0OtzH8RXl8'
-      chat_id = '-265831084'#'-254088467' 
+      chat_id = '-265831084'#'-254088467'
       Telegram::Bot::Client.run(token) do |bot|
         bot.api.send_message(chat_id: chat_id, text: message)
       end

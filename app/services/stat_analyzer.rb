@@ -15,14 +15,14 @@ class StatAnalyzer
   def call
     need_reboot = false
     begin
-      if hashrate_down?
-        Notifier.hashrate_down(machine)
-      end
       if unsuccessfull?
         need_reboot = true
       end
+      if hashrate_down? && !m3?
+        Notifier.hashrate_down(machine, need_reboot)
+      end
       if temp_up?
-        Notifier.temp_up(machine)
+        Notifier.temp_up(machine, need_reboot)
         need_reboot = true
       end
       if shut_down?
@@ -34,6 +34,10 @@ class StatAnalyzer
   end
 
   private
+
+  def m3?
+    machine.model == 'M3'
+  end
 
   def hashrate_down?
     asic.hashrate.to_f - stat.hashrate.to_f > asic.delta * asic.hashrate.to_f
