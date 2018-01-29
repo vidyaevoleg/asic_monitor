@@ -14,23 +14,21 @@ class StatAnalyzer
 
   def call
     need_reboot = false
-    begin
-      if unsuccessfull?
-        need_reboot = true
-      end
-      if hashrate_down? && !m3?
-        Notifier.hashrate_down(machine, need_reboot)
-      end
-      if temp_up?
-        need_reboot = true
-        Notifier.temp_up(machine, need_reboot)
-      end
-      if shut_down?
-        Notifier.shut_down(machine)
-      end
-    ensure
-      asic.reboot if need_reboot
+    if unsuccessfull?
+      need_reboot = true
+      Notifier.unsuccessfull(machine, need_reboot)
     end
+    if hashrate_down? && !m3?
+      Notifier.hashrate_down(machine, need_reboot)
+    end
+    if temp_up?
+      need_reboot = true
+      Notifier.temp_up(machine, need_reboot)
+    end
+    if shut_down?
+      Notifier.shut_down(machine)
+    end
+    asic.reboot if need_reboot
   end
 
   private

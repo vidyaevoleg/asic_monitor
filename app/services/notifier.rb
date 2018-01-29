@@ -6,6 +6,10 @@ class Notifier
       write("machine #{machine.model} on place #{machine.place} shuw down")
     end
 
+    def unsuccessfull(machine, need_reboot = false)
+      write("machine #{machine.model} on place #{machine.place} rebooted")
+    end
+
     def temp_up(machine, rebooted = false)
       write("machine #{machine.model} on place #{machine.place} temp over #{Asic[machine].max_temp} #{', machine rebooted' if rebooted}")
     end
