@@ -5,7 +5,7 @@ class Asic::D3 < Asic
   end
 
   def max_temp
-    100
+    110
   end
 
   def hashrate
