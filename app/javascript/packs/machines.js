@@ -25,6 +25,27 @@ class Machines extends Component {
     }
   }
 
+  _getJsonFromUrl () {
+    const query = window.location.search.substr(1);
+    const result = {};
+    query.split("&").forEach(function(part) {
+      let item = part.split("=");
+      result[item[0]] = decodeURIComponent(item[1]);
+    });
+    return result;
+  }
+
+  componentDidMount () {
+    const params = this._getJsonFromUrl();
+    if (params.model) {
+      this.setState({
+        filter: {
+          model: params.model
+        }
+      })
+    }
+  }
+
   chooseAll = (e) => {
     if (e.target.checked) {
       this.setState({
@@ -115,6 +136,17 @@ class Machines extends Component {
     }
   }
 
+  changeSearchHanlder = (e) => {
+    const model = e.target.value;
+    window.history.pushState({}, '', '?model=' + model)
+    this.setState({
+      filter: {
+        model
+      }
+    })
+  }
+
+
   openHandler = () => {
     const {selected, machines} = this.state;
     selected.map(id => {
@@ -126,7 +158,6 @@ class Machines extends Component {
   render () {
     const {selected, filter, selectedMachines, selectedMachine, selectedTemplate, rebootedMachines, models} = this.state;
     const machines = this.filterMachines();
-
     return (
       <div className="container-fluid">
         <div className="machines-header">
@@ -144,7 +175,7 @@ class Machines extends Component {
         <div className="row">
           <div className="col-2">
             <div className="form-group">
-              <select value={filter.model} className="form-control" onChange={(e) => {this.setState({filter: {...this.state.filter, model: e.target.value}})}}>
+              <select value={filter.model} className="form-control" onChange={this.changeSearchHanlder}>
                 <label>модель</label>
                 <option value={null}>all</option>
                  {models.map(m => {

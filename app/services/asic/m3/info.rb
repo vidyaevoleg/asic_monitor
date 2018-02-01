@@ -22,7 +22,7 @@ class Asic::M3::Info
       body = RestClient.get(info_url).body
       @html = Nokogiri::HTML(body)
       if get_hashrate.to_i == 0
-        sleep 10
+        sleep 5
         return set_html(count+1)
       end
     end

@@ -1,16 +1,17 @@
 module Machines
   class SaveStat < ::ApplicationInteraction
-    attr_reader :remote, :info
+    attr_reader :remote, :info, :stat
     object :machine, class: Machine
 
     def execute
       @remote = Asic[machine]
       @info = remote.info
       if info
-        save_actual_stat
+        @stat = save_actual_stat
       else
-        machine.stats.create(Stat::INVALID)
+        @stat = machine.stats.create(Stat::INVALID)
       end
+      machine.update(stat_id: stat.id)
     end
 
     private
@@ -22,6 +23,7 @@ module Machines
       end
       stat = machine.stats.create(info)
       StatAnalyzer.call(stat)
+      stat
     end
 
   end

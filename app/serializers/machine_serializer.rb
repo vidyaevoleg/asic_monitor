@@ -17,7 +17,7 @@ class MachineSerializer < ApplicationSerializer
   end
 
   def stat
-    @_stat ||= object.stats.order(id: :desc).first
+    @_stat ||= object.stat
   end
 
   def temparatures
@@ -37,7 +37,6 @@ class MachineSerializer < ApplicationSerializer
   end
 
   def time
-
     stat&.created_at&.strftime("%H:%M %d:%m")
   end
 
