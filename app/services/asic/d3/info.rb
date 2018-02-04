@@ -1,4 +1,3 @@
-require 'open-uri'
 require 'nokogiri'
 
 class Asic::D3::Info
