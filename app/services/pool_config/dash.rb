@@ -1,10 +1,10 @@
-class PoolConfig::B2x
+class PoolConfig::Dash
   def self.config
     {
-      url1: 'b2x.nextblock.ru:51332',
-      url2: 'stratum-b2x.multipools.club:11123',
+      url1: 'dash.nextblock.ru:54332',
+      url2: 'stratum+tcp://thecoin.pw:3807',
       url3: '',
-      worker1: '15A8txbixES5xkPRdbSatCSqQsidG37y9a',
+      worker1: 'Xxhs7Pqrtd4AKfXeUtHNj3a9ZBSxYd14Jg',
       worker2: 'boris_urich.boris_urich',
       worker3: '',
       password1: 'x',
@@ -18,11 +18,10 @@ class PoolConfig::B2x
 
   def self.as_json
     {
-      id: 'b2x',
+      id: 'dash1',
       miners: ['D3'],
-      label: 'B2x',
+      label: 'Dash',
       settings: config
     }
   end
-
 end

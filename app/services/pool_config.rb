@@ -2,14 +2,17 @@ class PoolConfig
   attr_reader :id, :address, :currency
 
   def self.all
-    url = 'http://nextblock.ru/api/pools'
-    pools = JSON.parse(RestClient.get(url).body) rescue []
-    pool_configs = pools.map {|pool| new(pool).as_json}
-    pool_configs.push(custom).flatten
+    custom
   end
 
   def self.custom
-    [PoolConfig::Bth.as_json]
+    [
+      PoolConfig::B2x.as_json,
+      PoolConfig::Bth.as_json,
+      PoolConfig::Dash.as_json,
+      PoolConfig::Ltc.as_json,
+      PoolConfig::Dgb.as_json
+    ]
   end
 
   def initialize(options={})

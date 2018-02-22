@@ -15,4 +15,13 @@ class PoolConfig::Ltc
       freq: 400
     }
   end
+
+  def self.as_json
+    {
+      id: 'ltc',
+      miners: ['L3'],
+      label: 'Litecoin',
+      settings: config
+    }
+  end
 end
