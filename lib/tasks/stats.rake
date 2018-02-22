@@ -5,6 +5,7 @@ namespace :stats do
     Rails.logger     = logger
 
     Machine.find_each do |machine|
+      sleep 0.5
       StatJob.perform_later(machine.id)
     end
   end
