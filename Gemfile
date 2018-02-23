@@ -25,7 +25,6 @@ gem "font-awesome-rails"
 gem 'active_model_serializers'
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
-gem 'rest-client'
 gem 'active_interaction', '~> 3.6'
 gem 'phony_rails'
 gem 'config'
