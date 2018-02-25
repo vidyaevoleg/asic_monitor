@@ -12,6 +12,7 @@ class PoolConfig
       PoolConfig::Dash.as_json,
       PoolConfig::Ltc.as_json,
       PoolConfig::Dgb.as_json,
+      PoolConfig::Lcc.as_json,
     ]
   end
 end
