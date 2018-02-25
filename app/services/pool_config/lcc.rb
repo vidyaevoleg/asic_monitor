@@ -1,4 +1,4 @@
-class PoolConfig::Bth
+class PoolConfig::Lcc
   def self.config
     {
       url1: 'lcc.nextblock.ru:55332',
