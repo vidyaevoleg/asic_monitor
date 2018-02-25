@@ -8,6 +8,6 @@ class Asic::S9 < Asic::D3
   end
 
   def hashrate
-    12500
+    13
   end
 end
