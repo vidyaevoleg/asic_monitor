@@ -1,4 +1,4 @@
-class PoolConfig::BthOther
+class PoolConfig::Bth2
   def self.config
     {
       url1: 'stratum+tcp://stratum.bcc.pool.bitcoin.com:3333',

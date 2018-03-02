@@ -9,7 +9,7 @@ class PoolConfig
     [
       PoolConfig::B2x.as_json,
       PoolConfig::Bth.as_json,
-      PoolConfig::Bth_other.as_json,
+      PoolConfig::Bth2.as_json,
       PoolConfig::Dash.as_json,
       PoolConfig::Ltc.as_json,
       PoolConfig::Dgb.as_json,
