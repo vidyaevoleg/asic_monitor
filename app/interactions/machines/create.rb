@@ -5,6 +5,7 @@ module Machines
     string :model
     string :serial, default: nil
     string :place
+    string :ip, default: nil
 
     validate do
       unless Machine.models.keys.include?(model)
@@ -13,7 +14,7 @@ module Machines
     end
 
     def execute
-      @machine = Machine.create(inputs.merge(ip: next_ip))
+      @machine = Machine.create(inputs.merge(ip: ip || next_ip))
       errors.merge!(machine.errors)
       if valid?
         template = Template.create(settings.merge(machine: machine))
