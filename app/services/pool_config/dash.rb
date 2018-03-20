@@ -4,7 +4,7 @@ class PoolConfig::Dash
       url1: 'dash.nextblock.ru:54332',
       url2: 'stratum+tcp://thecoin.pw:3807',
       url3: '',
-      worker1: 'Xxhs7Pqrtd4AKfXeUtHNj3a9ZBSxYd14Jg',
+      worker1: 'XjiW8i7LrW8vzp1oqt8JPe9vqyFZxPuVdQ',
       worker2: 'boris_urich.boris_urich',
       worker3: '',
       password1: 'x',

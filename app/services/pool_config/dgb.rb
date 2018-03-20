@@ -4,7 +4,7 @@ class PoolConfig::Dgb
       url1: 'dgb-sha256.nextblock.ru:52332',
       url2: 'stratum+tcp://thecoin.pw:3807',
       url3: '',
-      worker1: 'DFVs2xyc1P6CEyhed5Ya3fcHCwuqWu83Sm',
+      worker1: 'DEmdJS8BGGHyBU8KzrwfV2sGstaGJRzDAC',
       worker2: 'boris_urich.boris_urich',
       worker3: '',
       password1: 'x',

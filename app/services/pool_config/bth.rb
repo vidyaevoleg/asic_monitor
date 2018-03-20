@@ -4,7 +4,7 @@ class PoolConfig::Bth
       url1: 'bth.nextblock.ru:53332',
       url2: 'stratum+tcp://stratum.bcc.pool.bitcoin.com:3333',
       url3: '',
-      worker1: '1CLE29xSixAWq1dJvHJmPECEM57WYcF5WN',
+      worker1: '1Pkr1VoZFa5D8GcyLcq7FGvdjqt2AN51YP',
       worker2: 'vidyaevoleg',
       worker3: '',
       password1: 'x',
