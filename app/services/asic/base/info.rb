@@ -27,8 +27,10 @@ class Asic::Base::Info
   end
 
   def html
-    body = RestClient.get(info_url, headers).body
-    @html = Nokogiri::HTML(body)
+    @html ||= begin
+      body = RestClient.get(info_url, headers).body
+      @html = Nokogiri::HTML(body)
+    end
   end
 
   def headers
@@ -38,6 +40,7 @@ class Asic::Base::Info
   end
 
   def parse_stat_html
+    byebug
     {
       blocks: html.css('#ant_foundblocks').children.first.to_s,
       hashrate: html.css('#ant_ghs5s').children.first.to_s,

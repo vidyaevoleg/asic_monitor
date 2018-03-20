@@ -41,11 +41,9 @@ gem 'foreman'
 gem 'whenever', require: false
 gem 'rollbar'
 
-group :development, :test do
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'capybara', '~> 2.13'
-  gem 'selenium-webdriver'
-end
+gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+gem 'capybara', '~> 2.13'
+gem 'selenium-webdriver'
 
 # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
 gem 'web-console', '>= 3.3.0'
