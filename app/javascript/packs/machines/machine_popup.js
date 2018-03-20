@@ -1,4 +1,6 @@
 import React, {Component} from 'react'
+import Errors from './errors';
+
 import {
   Modal,
   ModalHeader,
@@ -74,19 +76,7 @@ class MachinePopup extends Component {
         </ModalHeader>
         <ModalBody>
           <div className="row">
-            {
-              errors && <div className="col-12">
-                <Alert color="danger">
-                  <ul>
-                    {Object.keys(errors).map((k) => {
-                      return (
-                        <li> {k} {errors[k].toLocaleString()} </li>
-                      )
-                    })}
-                  </ul>
-                </Alert>
-              </div>
-            }
+            <Errors errors={errors} />
             <div className="col-sm-6">
               <label>Модель</label>
               <select className="form-control" name="model" value={machine.model} onChange={this.changeFieldHandler}>
@@ -107,6 +97,12 @@ class MachinePopup extends Component {
             <div className="col-sm-6">
               <label>Серийный номер</label>
               <input placeholder="" name="serial" className="form-control" value={machine.serial} onChange={this.changeFieldHandler}/>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-sm-6">
+              <label>Id пользователя в общей системе</label>
+              <input placeholder="1" name="user_id" className="form-control" value={machine.user_id} onChange={this.changeFieldHandler}/>
             </div>
           </div>
         </ModalBody>

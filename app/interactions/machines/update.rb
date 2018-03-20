@@ -5,6 +5,7 @@ module Machines
     string :serial, default: nil
     string :place
     string :ip
+    integer :user_id, default: nil
 
     validate do
       unless Machine.models.keys.include?(model)
@@ -21,6 +22,5 @@ module Machines
     def to_model
       machine.reload
     end
-
   end
 end

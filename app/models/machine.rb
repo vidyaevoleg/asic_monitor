@@ -2,7 +2,7 @@ class Machine < ApplicationRecord
   has_one :template, dependent: :destroy
   has_many :stats, dependent: :destroy
   belongs_to :stat, optional: true
-  validates :ip, :place, uniqueness: true
+  validates_uniqueness_of :ip, :place, message: "poshel nahooy %{value}"
   validates :place, :model, presence: true
   enum model: {"D3": 0, "L3": 1, "M3": 2, "S9": 3}
   START_IP = '192.168.2.1'

@@ -4,6 +4,7 @@ import MachineListItem from './machines/machine_list_item'
 import MachineConfigPopup from './machines/machine_config_popup'
 import MachinePopup from './machines/machine_popup'
 import RebootingProgress from './machines/rebooting_progress'
+import UploadConfig from './machines/upload_config'
 import dums from './common/dums'
 
 class Machines extends Component {
@@ -21,6 +22,7 @@ class Machines extends Component {
       rebootedMachines: [],
       selectedTemplate: null,
       selectedMachine: null,
+      newConfig: null,
       models: gon.models
     }
   }
@@ -111,6 +113,7 @@ class Machines extends Component {
       selectedMachines: [],
       selectedMachine: null,
       selectedTemplate: null,
+      newConfig: null,
       rebootedMachines: []
     })
   }
@@ -146,7 +149,6 @@ class Machines extends Component {
     })
   }
 
-
   openHandler = () => {
     const {selected, machines} = this.state;
     selected.map(id => {
@@ -155,25 +157,34 @@ class Machines extends Component {
     })
   }
 
+  uploadConfigHanlder = () => {
+    this.setState({
+      newConfig: true
+    })
+  }
+
   render () {
-    const {selected, filter, selectedMachines, selectedMachine, selectedTemplate, rebootedMachines, models} = this.state;
+    const {selected, filter, selectedMachines, selectedMachine, selectedTemplate, rebootedMachines, models, newConfig} = this.state;
     const machines = this.filterMachines();
     return (
       <div className="container-fluid">
         <div className="machines-header">
-          <pre>
-            <h2>
-              тачки
-              <span className="machines-header-panel">
-                  <div className="col-2">
-                    <i className="fa fa-plus-circle text-success fa-lg" onClick={this.newMachineNandler} aria-hidden="true"></i>
-                  </div>
-              </span>
-            </h2>
-          </pre>
+          <div className="machines-header-item">
+            <h2> Асики </h2>
+          </div>
+          <div className="machines-header-item btn-lg">
+              <button className="btn btn-success" onClick={this.newMachineNandler}>
+                добавить машину
+              </button>
+          </div>
+          <div className="machines-header-item btn-lg" onClick={this.uploadConfigHanlder}>
+              <button className="btn btn-info">
+                загрузить конфиг
+              </button>
+          </div>
         </div>
-        <div className="row">
-          <div className="col-2">
+        <div className="machines-buttons">
+          <div className="machines-buttons-item">
             <div className="form-group">
               <select value={filter.model} className="form-control" onChange={this.changeSearchHanlder}>
                 <label>модель</label>
@@ -186,17 +197,17 @@ class Machines extends Component {
               </select>
             </div>
           </div>
-          {selected && selected.length > 0 && <div className="col-2">
+          {selected && selected.length > 0 && <div className="machines-buttons-item">
             <button className="btn btn-dark" onClick={this.editGroupHandler}>
               редактировать ({selected.length})
             </button>
           </div>}
-          {selected && selected.length > 0 && <div className="col-2">
+          {selected && selected.length > 0 && <div className="machines-buttons-item">
             <button className="btn btn-info" onClick={this.openHandler}>
               открыть ({selected.length})
             </button>
           </div>}
-          {selected && selected.length > 0 && <div className="col-2">
+          {selected && selected.length > 0 && <div className="machines-buttons-item">
             <button className="btn btn-danger" onClick={this.rebootHandler}>
               ребут ({selected.length})
             </button>
@@ -271,6 +282,9 @@ class Machines extends Component {
           {
             rebootedMachines && rebootedMachines.length > 0 &&
             <RebootingProgress toogle={this.tooglePopup} ids={rebootedMachines}/>
+          }
+          {
+            newConfig && <UploadConfig toogle={this.tooglePopup} models={models}/>
           }
         </div>
       </div>

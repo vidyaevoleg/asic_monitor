@@ -18,6 +18,15 @@ module Api
       render json: {ok: :ok}
     end
 
+    def upload_config
+      result = Machines::UploadConfig.run(params)
+      if result.valid?
+        render json: {ok: :ok}
+      else
+        render json: {errors: result.errors}, status: 422
+      end
+    end
+
     def update_template
       machine = Machine.find(params[:id])
       result = Machines::UpdateTemplate.run(template_params.merge(machine: machine))
@@ -33,7 +42,7 @@ module Api
     private
 
     def machine_params
-      params.require(:machine).permit(:model, :serial, :place, :ip)
+      params.require(:machine).permit(:model, :serial, :place, :ip, :user_id)
     end
 
     def template_params

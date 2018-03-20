@@ -14,7 +14,7 @@ module Machines
     end
 
     def execute
-      @machine = Machine.create(inputs.merge(ip: ip || next_ip))
+      @machine = Machine.create(inputs.merge(ip: ip.present? ? ip : next_ip))
       errors.merge!(machine.errors)
       if valid?
         template = Template.create(settings.merge(machine: machine))

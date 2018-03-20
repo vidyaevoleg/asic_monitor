@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :machines do
       put :update_template, on: :member
       put :reboot, on: :member
+      post :upload_config, on: :collection
     end
   end
   mount Sidekiq::Web => '/sidekiq'
