@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root 'machines#index'
   resources :machines, only: [:index, :show]
   resources :stats, only: :index
-  namespace :api do
+  namespace :api, defaults: {format: :json} do
     resources :machines do
       put :update_template, on: :member
       put :reboot, on: :member

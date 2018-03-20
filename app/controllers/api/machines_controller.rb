@@ -6,6 +6,11 @@ module Api
       respond_with machine, serializer: MachineSerializer, location: nil
     end
 
+    def index
+      machines = Machine.all
+      respond_with machines, each_serializer: MachineSerializer, location: nil
+    end
+
     def update
       machine = Machine.find(params[:id])
       result = Machines::Update.run(machine_params.merge(machine: machine))

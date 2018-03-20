@@ -21,6 +21,7 @@ gem 'unicorn'
 gem 'haml-rails', "~> 1.0"
 gem 'gon'
 gem 'sidekiq'
+gem 'rack-cors', :require => 'rack/cors'
 gem "font-awesome-rails"
 gem 'active_model_serializers'
 gem 'carrierwave', '~> 1.0'
