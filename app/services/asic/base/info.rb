@@ -37,13 +37,6 @@ class Asic::Base::Info
     end
   end
 
-  def template_html
-    @html ||= begin
-      body = RestClient.get(template_url, headers).body
-      @html = Nokogiri::HTML(body)
-    end
-  end
-
   def headers
     {
       'Authorization': 'Digest username="root", realm="antMiner Configuration", nonce="99555087629fb07166425ba8fc60c615", uri="/cgi-bin/minerStatus.cgi", response="1ba539812f50b3a05b853ab6b1e6e306", qop=auth, nc=00000364, cnonce="da189beb789c629b"'
@@ -53,16 +46,10 @@ class Asic::Base::Info
   def parse_stat_html
     {
       blocks: html.css('#ant_foundblocks').children.first.to_s,
-      hashrate: html.css('#ant_ghs5s').children.first.to_s,
+      hashrate: html.css('#ant_ghs5s').children.to_s.split('.').first.gsub(',', '.').to_f,
       success: check_success,
       temparatures: get_temp,
       active: true
-    }
-  end
-
-  def parse_template_html
-    {
-
     }
   end
 
