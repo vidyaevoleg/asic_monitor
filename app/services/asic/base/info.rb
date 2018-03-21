@@ -26,9 +26,20 @@ class Asic::Base::Info
     "#{machine.url}/cgi-bin/minerStatus.cgi"
   end
 
+  def template_url
+    "#{machine.url}/cgi-bin/minerConfiguration.cgi"
+  end
+
   def html
     @html ||= begin
       body = RestClient.get(info_url, headers).body
+      @html = Nokogiri::HTML(body)
+    end
+  end
+
+  def template_html
+    @html ||= begin
+      body = RestClient.get(template_url, headers).body
       @html = Nokogiri::HTML(body)
     end
   end
@@ -40,7 +51,6 @@ class Asic::Base::Info
   end
 
   def parse_stat_html
-    byebug
     {
       blocks: html.css('#ant_foundblocks').children.first.to_s,
       hashrate: html.css('#ant_ghs5s').children.first.to_s,
@@ -51,7 +61,9 @@ class Asic::Base::Info
   end
 
   def parse_template_html
-    byebug
+    {
+
+    }
   end
 
   def get_temp

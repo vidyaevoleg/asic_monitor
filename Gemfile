@@ -40,7 +40,7 @@ gem 'redis-rack-cache'
 gem 'foreman'
 gem 'whenever', require: false
 gem 'rollbar'
-
+gem 'net-telnet'
 gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 gem 'capybara', '~> 2.13'
 gem 'selenium-webdriver'
