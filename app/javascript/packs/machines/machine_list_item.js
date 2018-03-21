@@ -64,18 +64,22 @@ class MachineListItem extends Component {
           {machine.time}
         </td>
         <th>
-          <i className="fa fa-pencil fa-lg" onClick={editMachine}></i>
-        </th>
-        <th>
-          <i className="fa fa-cog fa-lg" aria-hidden="true" onClick={editConfig}></i>
-        </th>
-        <th>
-          <a href={'/machines/' + machine.id}>
-            <i className="fa fa-area-chart fa-lg" aria-hidden="true"></i>
-          </a>
-        </th>
-        <th>
-          <i className="fa fa-times text-danger fa-lg" aria-hidden="true" onClick={this.deleteMachine}></i>
+          <div className="machines-action">
+            <i className="fa fa-pencil" onClick={editMachine}></i>
+
+          </div>
+          <div className="machines-action">
+            <i className="fa fa-cog" aria-hidden="true" onClick={editConfig}></i>
+
+          </div>
+          <div className="machines-action">
+            <a href={'/machines/' + machine.id}>
+              <i className="fa fa-area-chart" aria-hidden="true"></i>
+            </a>
+          </div>
+          <div className="machines-action">
+            <i className="fa fa-times text-danger" aria-hidden="true" onClick={this.deleteMachine}></i>
+          </div>
         </th>
       </tr>
     )

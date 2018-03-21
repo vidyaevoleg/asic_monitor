@@ -215,7 +215,7 @@ class Machines extends Component {
         </div>
         <div className="machines-list">
           <table className="table table-considered">
-            <thead className="table-info">
+            <thead>
               <th width="5%">
                 <div className="form-group checkbox-big">
                   <input type="checkbox" className="form-control" checked={selected.length == machines.length} onChange={this.chooseAll}/>
@@ -244,14 +244,6 @@ class Machines extends Component {
               </th>
               <th className="label">
                 LAST SYNC
-              </th>
-              <th>
-              </th>
-              <th>
-              </th>
-              <th>
-              </th>
-              <th>
               </th>
             </thead>
             <tbody>
