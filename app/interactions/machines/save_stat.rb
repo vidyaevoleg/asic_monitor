@@ -19,7 +19,7 @@ module Machines
     def save_actual_stat
       last_actual_stat = machine.stats.order(id: :asc).where(success: true).last
       if last_actual_stat && last_actual_stat&.blocks.to_i > 0 && info[:blocks] == "0"
-        machine.update(blocks_count: machine.blocks_count.to_i + 1)
+        machine.update(blocks_count: machine.blocks_count + last_actual_stat&.blocks.to_i)
       end
       stat = machine.stats.create(info)
       StatAnalyzer.call(stat)
