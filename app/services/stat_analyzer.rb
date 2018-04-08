@@ -16,17 +16,17 @@ class StatAnalyzer
     need_reboot = false
     if unsuccessfull?
       need_reboot = true
-      Notifier.unsuccessfull(machine, need_reboot)
+      # Notifier.unsuccessfull(machine, need_reboot)
     end
     if hashrate_down? && !m3?
-      Notifier.hashrate_down(machine, need_reboot)
+      # Notifier.hashrate_down(machine, need_reboot)
     end
     if temp_up?
       need_reboot = true
-      Notifier.temp_up(machine, need_reboot)
+      # Notifier.temp_up(machine, need_reboot)
     end
     if shut_down?
-      Notifier.shut_down(machine)
+      # Notifier.shut_down(machine)
     end
     asic.reboot if need_reboot
   end
