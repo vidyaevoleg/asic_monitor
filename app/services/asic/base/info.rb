@@ -46,7 +46,7 @@ class Asic::Base::Info
   def parse_stat_html
     {
       blocks: html.css('#ant_foundblocks').children.first.to_s,
-      hashrate: html.css('#ant_ghs5s').children.to_s.split('.').first.gsub(',', '.').to_f,
+      hashrate: (html.css('#ant_ghs5s').children.to_s.split('.').first.gsub(',', '.').to_f rescue 0),
       success: check_success,
       temparatures: get_temp,
       active: true
