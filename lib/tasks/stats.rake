@@ -5,8 +5,8 @@ namespace :stats do
     Rails.logger     = logger
 
     Machine.find_each do |machine|
-      sleep 0.5
-      StatJob.new.perform(machine.id)
+      sleep 1
+      StatJob.perform_later(machine.id)
     end
   end
   task clear: [:environment] do
