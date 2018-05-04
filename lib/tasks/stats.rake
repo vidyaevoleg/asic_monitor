@@ -6,7 +6,7 @@ namespace :stats do
 
     Machine.find_each do |machine|
       sleep 0.5
-      StatJob.perform_later(machine.id)
+      StatJob.new.perform(machine.id)
     end
   end
   task clear: [:environment] do
