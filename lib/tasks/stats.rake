@@ -11,5 +11,6 @@ namespace :stats do
   end
   task clear: [:environment] do
     Stat.where("created_at < ?", 3.days.ago).destroy_all
+    Sidekiq.redis {|c| c.flushdb}
   end
 end
