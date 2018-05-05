@@ -1,7 +1,41 @@
 class Asic::DM22::Reboot < Asic::Base::Reboot
+  attr_reader :machine, :cookies
+
+  def self.call(*args)
+    new(*args).call
+  end
+
+  def initialize(machine)
+    @machine = machine
+    login
+  end
+
+  def call
+    RestClient.post(reboot_url, body, headers)
+  end
+
+  def login
+    @cookies = Asic::DM22::Login.call(machine)
+  end
+
+  def reboot_url
+    "#{machine.url}/restart.php"
+  end
+
   def headers
+    cookie = "PHPSESSID=#{cookies['PHPSESSID']}"
     {
-      'Authorization': 'Digest username="root", realm="antMiner Configuration", nonce="2a8296c9cd1fcd947b2252500641355a", uri="/cgi-bin/get_system_info.cgi?_=1525360659466", response="9d4daf89d109b9e50d833384a95b8b98", qop=auth, nc=00000102, cnonce="3cd8a0ad69bd5be9"'
+      'Cookie' => cookie,
+      'Host' => machine.url.gsub('http://', ''),
+      'Content-Length' => body.to_query.length,
+      'Content-Type' => 'application/x-www-form-urlencoded',
+      'Referer' => reboot_url
+    }
+  end
+
+  def body
+    {
+      host: 'iBeLink'
     }
   end
 end
