@@ -52,7 +52,7 @@ class Asic::DM22::Info < Asic::Base::Reboot
   end
 
   def get_temp
-    o.html.css('td')[10].children.first(8).map(&:to_s).reject {|e| e == "<br>"}.map do |t|
+    html.css('td')[10].children.first(8).map(&:to_s).reject {|e| e == "<br>"}.map do |t|
       t.split('C')
     end.flatten.map {|t| t.split(':').last}.map(&:to_f)
   end

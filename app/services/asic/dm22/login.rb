@@ -1,4 +1,4 @@
-class Asic::BM22::Login
+class Asic::DM22::Login
   attr_reader :machine
   def self.call(*args)
     new(*args).call
@@ -36,6 +36,4 @@ class Asic::BM22::Login
       'Referer' => login_url
     }
   end
-
 end
-Asic::BM22::Login.call(Machine.last)
