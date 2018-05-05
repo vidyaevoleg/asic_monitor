@@ -4,7 +4,7 @@ class Machine < ApplicationRecord
   belongs_to :stat, optional: true
   validates_uniqueness_of :ip, :place, message: "poshel nahooy %{value}"
   validates :place, :model, presence: true
-  enum model: {"D3": 0, "L3": 1, "M3": 2, "S9": 3, "A3": 4, "BM22": 5}
+  enum model: {"D3": 0, "L3": 1, "M3": 2, "S9": 3, "A3": 4, "DM22": 5}
   START_IP = '192.168.2.1'
   CHIP_MAP = {
     'M3' => 3,

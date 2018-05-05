@@ -1,6 +1,6 @@
-class Asic::BM22 < Asic
+class Asic::DM22 < Asic
   def chips
-    3
+    8
   end
 
   def hashrate
