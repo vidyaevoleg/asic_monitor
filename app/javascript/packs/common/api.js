@@ -92,6 +92,17 @@ const API = {
         success: success,
         error: error
       })
+    },
+    templates (success, error) {
+      return Rails.ajax({
+        type: 'GET',
+        url: 'https://hotel.miningup.ru/api/templates/current',
+        headers: {
+          'Access-Control-Allow-Origin': '*'
+        },
+        success: success,
+        error: error
+      })
     }
   }
 }

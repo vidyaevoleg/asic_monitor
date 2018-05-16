@@ -19,11 +19,17 @@ class MachineConfigPopup extends Component {
     this.state = {
       ids: machine ? [machine.id] : machines.map(m => m.id),
       template: machine ? machine.template : dums.machineDum.template,
-      configs: gon.configs,
+      configs: [],
       configId: null,
       progress: false,
       errors: null
     }
+  }
+
+  componentDidMount () {
+    API.machines.templates(res => {
+      this.setState({configs: res})
+    })
   }
 
   onChangeFieldHandler = (e) => {
@@ -45,7 +51,7 @@ class MachineConfigPopup extends Component {
       this.setState({
         template: {
           ...template,
-          ...config.settings
+          ...config
         }
       })
     }
@@ -97,10 +103,12 @@ class MachineConfigPopup extends Component {
                 <Alert color="info">
                   <label>конфиг</label>
                   <select className="form-control" value={configId} onChange={this.chooseConfig}>
+                    <option value={null}></option>
+
                     {
                       configs.map(c => {
                         return (
-                          <option value={c.id}>{c.label} ({c.miners.join(', ')})</option>
+                          <option value={c.id}>{c.name}</option>
                         )
                       })
                     }
