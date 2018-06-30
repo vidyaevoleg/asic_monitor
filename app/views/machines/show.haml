@@ -19,3 +19,19 @@
           %td= @machine.template&.url1
   .app-machine-stats#react_machine_stats
   = javascript_pack_tag('stats')
+  .app-machine-logs
+    %h2 Последние 100 логов
+    %table.table.table-bordered
+      %thead
+        %tr
+          %th ip
+          %th event
+          %th date
+          %th payload
+      %tbody
+        - @logs.each do |log|
+          %tr
+            %td= log.ip
+            %td= log.name
+            %td= log.date
+            %td= log.payload

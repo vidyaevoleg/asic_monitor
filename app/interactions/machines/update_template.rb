@@ -13,12 +13,14 @@ module Machines
     boolean :fan, default: false
     string :fan_value, default: nil
     integer :freq, default: 0
+    string :ip, default: nil
 
     def execute
-      template.update(inputs.except(:machine))
+      template.update(inputs.except(:machine, :ip))
       errors.merge!(template.errors)
       if valid?
         compose(UpdateAsic, machine: machine.reload)
+        create_log if valid?
       end
       self
     end
@@ -28,6 +30,10 @@ module Machines
     end
 
     private
+
+    def create_log
+      machine.machine_logs.create(ip: ip, name: 'Change config', payload: inputs.except(:ip, :machine).to_s)
+    end
 
     def template
       @template = machine.template || Template.create(machine: machine)

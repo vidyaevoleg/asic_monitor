@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :process_params
 
+  http_basic_authenticate_with name: "dhhlddopp", password: "supersecret", unless: :api?
+
   private
 
   def json_collection
@@ -20,6 +22,10 @@ class ApplicationController < ActionController::Base
 
   def process_params
     set_blanc_values_to_nil!(params)
+  end
+
+  def api?
+    request.url.include?('api')
   end
 
 end

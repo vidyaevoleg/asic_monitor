@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180320140225) do
+ActiveRecord::Schema.define(version: 20180630130123) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "machine_logs", force: :cascade do |t|
+    t.string "ip"
+    t.string "name"
+    t.text "payload"
+    t.integer "machine_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["machine_id"], name: "index_machine_logs_on_machine_id"
+  end
 
   create_table "machines", force: :cascade do |t|
     t.integer "model", default: 0

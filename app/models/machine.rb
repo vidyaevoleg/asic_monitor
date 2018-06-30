@@ -1,6 +1,7 @@
 class Machine < ApplicationRecord
   has_one :template, dependent: :destroy
   has_many :stats, dependent: :destroy
+  has_many :machine_logs, class_name: 'Machine::Log'
   belongs_to :stat, optional: true
   validates_uniqueness_of :ip, :place, message: "poshel nahooy %{value}"
   validates :place, :model, presence: true

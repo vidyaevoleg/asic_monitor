@@ -8,9 +8,10 @@ class MachinesController < ApplicationController
   end
 
   def show
-    @machine = Machine.includes(:template).find(params[:id])
+    @machine = Machine.includes(:template, :machine_logs).find(params[:id])
     stats = Stat.includes(:machine).order(id: :desc).where(machine: @machine).limit(200)
     gon.stats = json_collection.new(stats, each_serializer: StatSerializer)
     gon.chips = Machine::CHIP_MAP[@machine.model]
+    @logs = @machine.machine_logs.order(id: :desc).limit(100)
   end
 end
