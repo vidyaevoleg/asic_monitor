@@ -1,8 +1,8 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  devise_for :users
   root 'machines#index'
+  devise_for :users
   resources :machines, only: [:index, :show]
   resources :stats, only: :index
   namespace :api, defaults: {format: :json} do
