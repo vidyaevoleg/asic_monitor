@@ -2,6 +2,7 @@ module Machines
   class Reboot < ::ApplicationInteraction
     object :machine
     string :ip, default: nil
+    string :referer, default: nil
 
     def to_model
       machine.reload

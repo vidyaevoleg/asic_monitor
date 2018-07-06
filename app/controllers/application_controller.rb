@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :process_params
 
-  http_basic_authenticate_with name: "super_users", password: "47$%()NBVBggjhs", unless: :api?
+  http_basic_authenticate_with name: "super_users", password: "47$%()NBVBggjhs", unless: :hotel?
 
   private
 
@@ -24,8 +24,8 @@ class ApplicationController < ActionController::Base
     set_blanc_values_to_nil!(params)
   end
 
-  def api?
-    request.url.include?('api')
+  def hotel?
+    request.referer&.include?('hotel.miningup')
   end
 
 end

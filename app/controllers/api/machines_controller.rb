@@ -34,13 +34,17 @@ module Api
 
     def update_template
       machine = Machine.find(params[:id])
-      result = Machines::UpdateTemplate.run(template_params.merge(machine: machine, ip: request.ip))
+      result = Machines::UpdateTemplate.run(template_params.merge(
+        machine: machine,
+        ip: request.ip,
+        referer: request.referer
+      ))
       respond_with result, serializer: MachineSerializer, location: nil
     end
 
     def reboot
       machine = Machine.find(params[:id])
-      result = Machines::Reboot.run(machine: machine, ip: request.ip)
+      result = Machines::Reboot.run(machine: machine, ip: request.ip, referer: request.referer)
       respond_with result, serializer: MachineSerializer, location: nil
     end
 
