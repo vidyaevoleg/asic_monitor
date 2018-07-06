@@ -17,7 +17,7 @@ module Monitoring
     )
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'hotel.miningup.ru'
+        origins 'localhost:3000', 'hotel.miningup.ru', 'chrn.nextblock.ru', 'tmb.nextblock.ru', 'tmb2.nextblock.ru'
         resource '*', :headers => :any, :methods => [:get, :post, :options, :put, :delete]
       end
     end
