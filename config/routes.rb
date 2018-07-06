@@ -1,6 +1,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  devise_for :users
   root 'machines#index'
   resources :machines, only: [:index, :show]
   resources :stats, only: :index

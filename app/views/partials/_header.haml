@@ -1,3 +1,5 @@
 %header
   %a{href: '/'}
     monitor
+  - if current_user
+    = link_to('выйти', destroy_user_session_path, method: :delete, class: 'exit')

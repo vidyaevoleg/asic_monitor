@@ -1,22 +1,36 @@
-Machine.destroy_all
 
-machine = Machine.create!(
-  model: 0,
-  ip: '192.168.0.1:1234',
-  serial: '111111111',
-  place: '1-2-2'
-)
-template = Template.create!(
-  url1: 'b2x.nextblock.ru',
-  worker1: 'worker',
-  password1: 'x',
-  url2: 'b2x.nextblock.ru',
-  worker2: 'worker',
-  password2: 'x',
-  url3: 'b2x.nextblock.ru',
-  worker3: 'worker',
-  password3: 'x',
-  fan: true,
-  fan_value: 101,
-  machine: machine
-)
+users = [
+  {
+    email: 'admin@nextblock.ru',
+    password: '12345678'
+  },
+  {
+    email: 'alexey@nextblock.ru',
+    password: 'sdsafdsfsd',
+  },
+  {
+    email: 'andrey@nextblock.ru',
+    password: 'dfdsfdsdf',
+  },
+  {
+    email: 'anton@nextblock.ru',
+    password: 'dsd34fdf'
+  },
+  {
+    email: 'artem@nextblock.ru',
+    password: '42344fdsd',
+  },
+  {
+    email: 'valeriy@nextblock.ru',
+    password: 'sa3543ddf',
+  },
+  {
+    email: 'volkov@nextblock.ru',
+    password: 'sddr9080',
+  },
+  {
+    email: 'maxim@nextblock.ru',
+    password: 'jkjokpkll'
+  }
+]
+users.each {|attrs| User.create!(attrs)}

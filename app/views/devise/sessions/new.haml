@@ -1,0 +1,13 @@
+.login
+  .cont
+    %h1 Вход
+    = render partial: 'devise/shared/alerts'
+    .login-section
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .login-section-input
+          %label email
+          = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control'
+        .login-section-input
+          %label пароль
+          = f.password_field :password, autocomplete: "off", class: 'form-control'
+        = f.submit "Войти"

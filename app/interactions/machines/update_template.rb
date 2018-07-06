@@ -14,10 +14,10 @@ module Machines
     string :fan_value, default: nil
     integer :freq, default: 0
     string :ip, default: nil
-    string :referer, default: nil
+    string :user, default: nil
 
     def execute
-      template.update(inputs.except(:machine, :ip, :referer))
+      template.update(inputs.except(:machine, :ip, :user))
       errors.merge!(template.errors)
       if valid?
         compose(UpdateAsic, machine: machine.reload)
@@ -33,7 +33,7 @@ module Machines
     private
 
     def create_log
-      machine.machine_logs.create(ip: ip, name: 'Change config', referer: referer. payload: inputs.except(:ip, :machine, :referer).to_s)
+      machine.machine_logs.create(ip: ip, name: 'Change config', user: user, payload: inputs.except(:ip, :machine, :user).to_s)
     end
 
     def template

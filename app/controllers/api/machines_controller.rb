@@ -1,5 +1,6 @@
 module Api
   class MachinesController < ::Api::ApplicationController
+    skip_before_action :authenticate_user!
 
     def create
       machine = Machines::Create.run(machine_params)
@@ -37,14 +38,14 @@ module Api
       result = Machines::UpdateTemplate.run(template_params.merge(
         machine: machine,
         ip: request.ip,
-        referer: request.referer
+        user: current_user&.email || request.referer,
       ))
       respond_with result, serializer: MachineSerializer, location: nil
     end
 
     def reboot
       machine = Machine.find(params[:id])
-      result = Machines::Reboot.run(machine: machine, ip: request.ip, referer: request.referer)
+      result = Machines::Reboot.run(machine: machine, ip: request.ip, user: current_user&.email || request.referer)
       respond_with result, serializer: MachineSerializer, location: nil
     end
 
