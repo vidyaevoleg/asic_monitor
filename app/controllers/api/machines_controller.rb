@@ -1,6 +1,7 @@
 module Api
   class MachinesController < ::Api::ApplicationController
     skip_before_action :authenticate_user!
+    before_action :check_user, only: [:reboot, :update_template]
 
     def create
       machine = Machines::Create.run(machine_params)
@@ -38,14 +39,14 @@ module Api
       result = Machines::UpdateTemplate.run(template_params.merge(
         machine: machine,
         ip: request.ip,
-        user: current_user&.email || request.referer,
+        user: @user,
       ))
       respond_with result, serializer: MachineSerializer, location: nil
     end
 
     def reboot
       machine = Machine.find(params[:id])
-      result = Machines::Reboot.run(machine: machine, ip: request.ip, user: current_user&.email || request.referer)
+      result = Machines::Reboot.run(machine: machine, ip: request.ip, user: @user)
       respond_with result, serializer: MachineSerializer, location: nil
     end
 
@@ -53,6 +54,13 @@ module Api
 
     def machine_params
       params.require(:machine).permit(:model, :serial, :place, :ip, :user_id)
+    end
+
+    def check_user
+      @user = current_user&.email || request.headers['user']
+      unless @user
+        render json: {status: 'unauthorized'}
+      end
     end
 
     def template_params
