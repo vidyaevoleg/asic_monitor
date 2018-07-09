@@ -1,7 +1,7 @@
 module Api
   class MachinesController < ::Api::ApplicationController
     skip_before_action :authenticate_user!
-    before_action :check_user, only: [:reboot, :update_template]
+    before_action :check_user, only: [:reboot, :update_template, :destroy, :update, :upload_config]
 
     def create
       machine = Machines::Create.run(machine_params)
