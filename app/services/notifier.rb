@@ -19,8 +19,8 @@ class Notifier
     end
 
     def write(message)
-      token = '513352298:AAET6A2tCe-dc5eVXRizuo80o0OtzH8RXl8'
-      chat_id = '-265831084'#'-254088467'
+      token = ENV['TELEGRAM_TOKEN']
+      chat_id = ENV['TELEGRAM_CHAT_ID']
       Telegram::Bot::Client.run(token) do |bot|
         bot.api.send_message(chat_id: chat_id, text: message)
       end
